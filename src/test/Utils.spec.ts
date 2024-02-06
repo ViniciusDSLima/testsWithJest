@@ -10,27 +10,41 @@ describe('Utils test suite', () => {
          expect(actual).toBe(expected);
      });
 
-    it('should return info for valid string', () => {
-        const actual = getStringInfo('My-String');
+     describe('getStringInfo for arg My-String should', () => {
 
-        expect(actual.lowerCase).toBe('my-string');
-        expect(actual.extraInfo).toEqual({});
+         test('return right length', () => {
+             const actual = getStringInfo('My-String');
+             expect(actual.characters).toHaveLength(9);
+         });
 
+         test('return right lower case', () => {
+             const actual = getStringInfo('My-String');
+             expect(actual.lowerCase).toBe('my-string');
+         });
 
-        expect(actual.characters.length).toBe(9);
-        expect(actual.characters).toHaveLength(9);
+         test('return right upper case', () => {
+             const actual = getStringInfo('My-String');
+             expect(actual.upperCase).toBe('MY-STRING');
+         });
 
-        expect(actual.characters).toEqual(['M', 'y', '-', 'S', 't', 'r', 'i','n','g']);
-        expect(actual.characters).toContain<string>('M');
-        expect(actual.characters).toEqual(
-            expect.arrayContaining(['M', 'y', '-', 'S', 't', 'r', 'i','n','g'])
-        )
+         test('return right characters', () => {
+             const actual = getStringInfo('My-String');
 
-        expect(actual.extraInfo).not.toBe(undefined);
-        expect(actual.extraInfo).not.toBeUndefined();
-        expect(actual.extraInfo).toBeDefined();
-        expect(actual.extraInfo).toBeTruthy();
+             expect(actual.characters).toEqual(['M', 'y', '-', 'S', 't', 'r', 'i','n','g']);
+             expect(actual.characters).toContain<string>('M');
+             expect(actual.characters).toEqual(
+                 expect.arrayContaining(['M', 'y', '-', 'S', 't', 'r', 'i','n','g'])
+             )
+         });
 
+         test('return defined extra info', () => {
+             const actual = getStringInfo('My-String');
 
-    });
+             expect(actual.extraInfo).not.toBe(undefined);
+             expect(actual.extraInfo).not.toBeUndefined();
+             expect(actual.extraInfo).toBeDefined();
+             expect(actual.extraInfo).toBeTruthy();
+         });
+
+     })
 });
